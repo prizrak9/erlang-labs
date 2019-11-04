@@ -1,0 +1,6 @@
+- docker run -it --rm erlang:alpine
+- docker cp l1.erl 9148533c2d68:l1.erl
+- docker exec -it 9148533c2d68 ls
+- c("l1.erl").
+- l1:area({square,2}).
+- l1:area({circle,2}).
