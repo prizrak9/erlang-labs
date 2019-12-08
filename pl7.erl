@@ -1,5 +1,5 @@
 -module(pl7).
--export([func/1, generate/0, withCompiler/2]).
+-export([func/1, generate/0]).
 
 generate() ->
     [{autoCAD, gcc14},
@@ -10,9 +10,11 @@ generate() ->
     {opera, gcc14},
     {internetExplorer, gcc8}].
 
-withCompiler(A, C1) ->
-    [P2 || {P2,C2} <- A, C2 =:= C1].
+withCompiler(Pairs, C1) ->
+    [P2 || {P2,C2} <- Pairs, C2 =:= C1].
 
-func(A) ->
-    [{C, [PH|PT]} || {C, P, [PH|PT]} <- [{C, P, withCompiler(A, C)} || {P,C} <- A], P =:= PH].
+func(Pairs) ->
+    [{C, Ps} || {C, P, Ps=[PH|_]} <- [{C, P, withCompiler(Pairs, C)} || {P,C} <- Pairs], P =:= PH].
   
+% func(Pairs) ->
+%     [{C, Ps} || {C, P, Ps=[PH|_]} <- [{C, P, [P2 || {P2,C2} <- Pairs, C2 =:= C]} || {P,C} <- Pairs], P =:= PH].
