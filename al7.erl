@@ -24,16 +24,3 @@ func(Lst, N) -> flatten(func(Lst, N, [])).
 func(Lst, 1, Acc) -> [Acc++[E] || E <- Lst];
 func(Lst, N, Acc) ->
     [func(skip(Lst, I + 1), N - 1, Acc++[at(Lst, I)]) || I <- range(length(Lst) - N + 1)].
-
-% reverse([H|_], 1) -> [H];
-% reverse([H|T], Left) ->
-%     reverse(T, Left - 1) ++ [H].
-% reverse(A) -> reverse(A, length(A)).
-
-% func(Lst, N) -> func(reverse(Lst), N, [], length(Lst) - N + 1).
-% func(Lst, 1, Acc, _) -> [[I|Acc] || I <- Lst];
-% func(Lst, N, Acc, Count)  ->
-%     [func(skip(Lst, Ii), N - 1, [at(Lst, Ii)|Acc], Count, Ii + 1) || Ii <- range(Count)].
- 
-
- 
